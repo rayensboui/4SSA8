@@ -6,26 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "maintenance")
+@Table(name = "equipement")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Maintenance {
+public class Equipement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMaintenance;
+    private Long idEquipement;
 
-    @Column(nullable = false)
-    private LocalDate dateDebut;
+    @Column(nullable = false, length = 100)
+    private String libelle;
 
-    @Column(nullable = false)
-    private LocalDate dateFin;
-
-    @Column(length = 255)
-    private String description;
+    @ManyToMany(mappedBy = "equipements")
+    private List<Vehicule> vehicules;
 }
